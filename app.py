@@ -240,39 +240,40 @@ class BabyAGI(BaseModel):
         controller.add_task({"task_id": 1, "task_name": first_task})
         return controller
 
+with streamlit_analytics.track():
+    def main():
+        st.set_page_config(
+            initial_sidebar_state="expanded",
+            page_title="BabyAGI Streamlit",
+            layout="centered",
+        )
 
-def main():
-    st.set_page_config(
-        initial_sidebar_state="expanded",
-        page_title="BabyAGI Streamlit",
-        layout="centered",
-    )
+        with st.sidebar:
+            openai_api_key = st.text_input('Your OpenAI API KEY', type="password")
 
-    with st.sidebar:
-        openai_api_key = st.text_input('Your OpenAI API KEY', type="password")
+        st.title("BabyAGI Streamlit")
+        st.markdown("Customized with ❤️ by [Aenish Shrestha](https://twitter.com/aenish_shrestha) , Credits : [Dory](https://twitter.com/dory111111)")
+        objective = st.text_input("Input Ultimate goal", "Solve world hunger")
+        first_task = st.text_input("Input Where to start", "Develop a task list")
+        max_iterations = st.number_input("Max iterations", value=3, min_value=1, step=1)
+        button = st.button("Run")
 
-    st.title("BabyAGI Streamlit")
-    objective = st.text_input("Input Ultimate goal", "Solve world hunger")
-    first_task = st.text_input("Input Where to start", "Develop a task list")
-    max_iterations = st.number_input("Max iterations", value=3, min_value=1, step=1)
-    button = st.button("Run")
+        embedding_model = HuggingFaceEmbeddings()
+        vectorstore = FAISS.from_texts(["_"], embedding_model, metadatas=[{"task":first_task}])
 
-    embedding_model = HuggingFaceEmbeddings()
-    vectorstore = FAISS.from_texts(["_"], embedding_model, metadatas=[{"task":first_task}])
-
-    if button:
-        try:
-            baby_agi = BabyAGI.from_llm_and_objectives(
-                llm=OpenAI(openai_api_key=openai_api_key),
-                vectorstore=vectorstore,
-                objective=objective,
-                first_task=first_task,
-                verbose=False
-            )
-            baby_agi.run(max_iterations=max_iterations)
-        except Exception as e:
-            st.error(e)
+        if button:
+            try:
+                baby_agi = BabyAGI.from_llm_and_objectives(
+                    llm=OpenAI(openai_api_key=openai_api_key),
+                    vectorstore=vectorstore,
+                    objective=objective,
+                    first_task=first_task,
+                    verbose=False
+                )
+                baby_agi.run(max_iterations=max_iterations)
+            except Exception as e:
+                st.error(e)
 
 
-if __name__ == "__main__":
-    main()
+    if __name__ == "__main__":
+        main()
