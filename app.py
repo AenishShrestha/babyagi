@@ -245,8 +245,13 @@ class BabyAGI(BaseModel):
 
    
 def main():
-     st.set_page_config(page_title="BabyAgi", page_icon="🤖",initial_sidebar_state="expanded", layout="centered")
-       
+     st.set_page_config(
+         page_title="BabyAgi", 
+         page_icon="🤖",
+         initial_sidebar_state="expanded", 
+         layout="centered",
+     )
+  
     with st.sidebar:
         openai_api_key = st.text_input('Your OpenAI API KEY', type="password")
 
