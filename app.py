@@ -243,6 +243,8 @@ class BabyAGI(BaseModel):
         return controller
 
 with streamlit_analytics.track():
+    # Exclude the 'password' parameter from analytics tracking
+    streamlit_analytics.exclude_params(['openai_api_key'])
     st.set_page_config(page_title="BabyAgi", page_icon="🤖",initial_sidebar_state="expanded", layout="centered")
    
     def main():
