@@ -258,7 +258,7 @@ def main():
     
     button = st.button("Run")
     streamlit_analytics.start_tracking()
-        st.set_page_config(
+    st.set_page_config(
                 initial_sidebar_state="expanded",
                 page_title="BabyAGI",
                 page_icon="🤖",
