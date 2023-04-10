@@ -245,13 +245,7 @@ class BabyAGI(BaseModel):
 
    
 def main():
-        st.set_page_config(
-            initial_sidebar_state="expanded",
-            page_title="BabyAGI",
-            page_icon="🤖",
-            layout="centered",
-        )
-
+       
     with st.sidebar:
         openai_api_key = st.text_input('Your OpenAI API KEY', type="password")
 
@@ -262,10 +256,18 @@ def main():
     first_task = st.text_input("Input Where to start", "Develop a task list")
     max_iterations = st.number_input("Max iterations", value=3, min_value=1, step=1)
     streamlit_analytics.start_tracking()
+    st.set_page_config(
+            initial_sidebar_state="expanded",
+            page_title="BabyAGI",
+            page_icon="🤖",
+            layout="centered",
+        )
+
     
     button = st.button("Run")
     
     streamlit_analytics.stop_tracking()
+    
 
     embedding_model = HuggingFaceEmbeddings()
     vectorstore = FAISS.from_texts(["_"], embedding_model, metadatas=[{"task":first_task}])
