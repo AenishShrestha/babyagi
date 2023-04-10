@@ -253,7 +253,7 @@ with streamlit_analytics.track():
 #         )
 
         with st.sidebar:
-            openai_api_key = st.text_input('Your OpenAI API KEY', type="password",on_change=None)
+            openai_api_key = st.text_input('Your OpenAI API KEY', type="password",on_change)
 
         st.title("BabyAGI Streamlit")
         st.markdown("Customized with ❤️ by [Aenish Shrestha](https://twitter.com/aenish_shrestha) , Credits : [Dory](https://twitter.com/dory111111)")
