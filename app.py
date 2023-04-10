@@ -241,7 +241,6 @@ class BabyAGI(BaseModel):
         return controller
 
 @st.cache(ttl=24*3600)
-
 def main():
     st.set_page_config(
         initial_sidebar_state="expanded",
