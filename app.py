@@ -241,6 +241,7 @@ class BabyAGI(BaseModel):
         return controller
 
 with streamlit_analytics.track():
+    @st.cache_data(persist=True)
     def main():
         st.set_page_config(
             initial_sidebar_state="expanded",
