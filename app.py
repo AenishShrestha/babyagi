@@ -278,7 +278,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-streamlit_analytics.start_tracking()
-streamlit_analytics.stop_tracking()            
+          
             
 
