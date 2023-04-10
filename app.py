@@ -261,25 +261,25 @@ def main():
     first_task = st.text_input("Input Where to start", "Develop a task list")
     with streamlit_analytics.track():
         st.set_page_config(page_title="BabyAgi", page_icon="🤖",initial_sidebar_state="expanded", layout="centered")
-        max_iterations = st.number_input("Max iterations", value=3, min_value=1, step=1)
-        button = st.button("Run")
+    max_iterations = st.number_input("Max iterations", value=3, min_value=1, step=1)
+    button = st.button("Run")
 
-        embedding_model = HuggingFaceEmbeddings()
-        vectorstore = FAISS.from_texts(["_"], embedding_model, metadatas=[{"task":first_task}])
+    embedding_model = HuggingFaceEmbeddings()
+    vectorstore = FAISS.from_texts(["_"], embedding_model, metadatas=[{"task":first_task}])
 
-        if button:
-            try:
-                baby_agi = BabyAGI.from_llm_and_objectives(
-                    llm=OpenAI(openai_api_key=openai_api_key),
-                    vectorstore=vectorstore,
-                    objective=objective,
-                    first_task=first_task,
-                    verbose=False
-                )
-                baby_agi.run(max_iterations=max_iterations)
-            except Exception as e:
-                st.error(e)
+    if button:
+        try:
+            baby_agi = BabyAGI.from_llm_and_objectives(
+                llm=OpenAI(openai_api_key=openai_api_key),
+                vectorstore=vectorstore,
+                objective=objective,
+                first_task=first_task,
+                verbose=False
+            )
+            baby_agi.run(max_iterations=max_iterations)
+        except Exception as e:
+            st.error(e)
 
 
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()
