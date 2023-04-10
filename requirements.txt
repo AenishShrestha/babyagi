@@ -1,3 +1,5 @@
 langchain==0.0.136
 pydantic==1.10.5
 streamlit==1.20.0
+sentence_transformers
+
