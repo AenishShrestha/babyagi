@@ -240,7 +240,7 @@ class BabyAGI(BaseModel):
         controller.add_task({"task_id": 1, "task_name": first_task})
         return controller
 
-@st.cache(hash_funcs={"MyUnhashableClass": lambda _: None}
+@st.cache(ttl=24*3600)
 
 def main():
     st.set_page_config(
