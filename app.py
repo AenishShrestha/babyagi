@@ -254,6 +254,7 @@ with streamlit_analytics.track():
 
         st.title("BabyAGI Streamlit")
         st.markdown("Customized with ❤️ by [Aenish Shrestha](https://twitter.com/aenish_shrestha) , Credits : [Dory](https://twitter.com/dory111111)")
+        st.markdown("[Github Repo](https://github.com/AenishShrestha/babyagi)")
         objective = st.text_input("Input Ultimate goal", "Solve world hunger")
         first_task = st.text_input("Input Where to start", "Develop a task list")
         max_iterations = st.number_input("Max iterations", value=3, min_value=1, step=1)
