@@ -7,7 +7,6 @@ from langchain.vectorstores import FAISS
 from langchain.vectorstores.base import VectorStore
 from pydantic import BaseModel, Field
 import streamlit as st
-import streamlit_analytics
 
 class TaskCreationChain(LLMChain):
     @classmethod
@@ -216,7 +215,6 @@ class BabyAGI(BaseModel):
                 break
 
     @classmethod
-    
     def from_llm_and_objectives(
         cls,
         llm: BaseLLM,
@@ -242,24 +240,23 @@ class BabyAGI(BaseModel):
         controller.add_task({"task_id": 1, "task_name": first_task})
         return controller
 
+
 def main():
     st.set_page_config(
         initial_sidebar_state="expanded",
-        page_title="BabyAGI",
+        page_title="BabyAGI Streamlit",
         layout="centered",
-        page_icon="🤖",
     )
-  
+
     with st.sidebar:
         openai_api_key = st.text_input('Your OpenAI API KEY', type="password")
 
     st.title("BabyAGI Streamlit")
-    st.markdown("Customized with ❤️ by [Aenish Shrestha](https://twitter.com/aenish_shrestha) , Credits : [Dory](https://twitter.com/dory111111)")
-    st.markdown("[Github Repo](https://github.com/AenishShrestha/babyagi)")
     objective = st.text_input("Input Ultimate goal", "Solve world hunger")
     first_task = st.text_input("Input Where to start", "Develop a task list")
     max_iterations = st.number_input("Max iterations", value=3, min_value=1, step=1)
     button = st.button("Run")
+
     embedding_model = HuggingFaceEmbeddings()
     vectorstore = FAISS.from_texts(["_"], embedding_model, metadatas=[{"task":first_task}])
 
@@ -276,8 +273,6 @@ def main():
         except Exception as e:
             st.error(e)
 
+
 if __name__ == "__main__":
     main()
-          
-            
-
