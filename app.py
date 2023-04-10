@@ -242,6 +242,7 @@ class BabyAGI(BaseModel):
         return controller
 
 with streamlit_analytics.track():
+    st.set_page_config(page_title="BabyAgi", page_icon="🤖")
     @st.cache_data(persist=True)
     def main():
         st.set_page_config(
