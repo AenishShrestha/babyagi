@@ -255,19 +255,7 @@ def main():
     objective = st.text_input("Input Ultimate goal", "Solve world hunger")
     first_task = st.text_input("Input Where to start", "Develop a task list")
     max_iterations = st.number_input("Max iterations", value=3, min_value=1, step=1)
-    
     button = st.button("Run")
-    streamlit_analytics.start_tracking()
-    st.set_page_config(
-                initial_sidebar_state="expanded",
-                page_title="BabyAGI",
-                page_icon="🤖",
-                layout="centered",
-            )
-
-    streamlit_analytics.stop_tracking()
-    
-
     embedding_model = HuggingFaceEmbeddings()
     vectorstore = FAISS.from_texts(["_"], embedding_model, metadatas=[{"task":first_task}])
 
@@ -284,6 +272,12 @@ def main():
         except Exception as e:
             st.error(e)
 
-
-if __name__ == "__main__":
-    main()
+with streamlit_analytics.track():
+    st.set_page_config(
+                initial_sidebar_state="expanded",
+                page_title="BabyAGI",
+                page_icon="🤖",
+                layout="centered",
+            )
+    if __name__ == "__main__":
+        main()
