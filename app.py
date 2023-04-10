@@ -240,7 +240,7 @@ class BabyAGI(BaseModel):
         controller.add_task({"task_id": 1, "task_name": first_task})
         return controller
 
-@st.cache(ttl=24*3600)
+@st.cache_data(ttl=24*3600)
 def main():
     st.set_page_config(
         initial_sidebar_state="expanded",
