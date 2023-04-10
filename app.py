@@ -247,8 +247,9 @@ class BabyAGI(BaseModel):
 def main():
     st.set_page_config(
         initial_sidebar_state="expanded",
-        page_title="BabyAGI Streamlit",
+        page_title="BabyAGI",
         layout="centered",
+        page_icon="🤖",
     )
   
     with st.sidebar:
