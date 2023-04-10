@@ -252,7 +252,7 @@ def main():
 #         )
 
     with st.sidebar:
-        openai_api_key = st.text_input('Your OpenAI API KEY', type="password",on_change)
+        openai_api_key = st.text_input('Your OpenAI API KEY', type="password")
 
     st.title("BabyAGI Streamlit")
     st.markdown("Customized with ❤️ by [Aenish Shrestha](https://twitter.com/aenish_shrestha) , Credits : [Dory](https://twitter.com/dory111111)")
