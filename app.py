@@ -271,9 +271,10 @@ def main():
             baby_agi.run(max_iterations=max_iterations)
         except Exception as e:
             st.error(e)
-streamlit_analytics.start_tracking()
+
 if __name__ == "__main__":
     main()
+streamlit_analytics.start_tracking()
 streamlit_analytics.stop_tracking()            
             
 
