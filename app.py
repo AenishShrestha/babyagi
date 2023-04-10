@@ -242,24 +242,25 @@ class BabyAGI(BaseModel):
         controller.add_task({"task_id": 1, "task_name": first_task})
         return controller
 
-with streamlit_analytics.track():
-    st.set_page_config(page_title="BabyAgi", page_icon="🤖",initial_sidebar_state="expanded", layout="centered")
+
    
-    def main():
+def main():
 #         st.set_page_config(
 #             initial_sidebar_state="expanded",
 #             page_title="BabyAGI Streamlit",
 #             layout="centered",
 #         )
 
-        with st.sidebar:
-            openai_api_key = st.text_input('Your OpenAI API KEY', type="password",on_change)
+    with st.sidebar:
+        openai_api_key = st.text_input('Your OpenAI API KEY', type="password",on_change)
 
-        st.title("BabyAGI Streamlit")
-        st.markdown("Customized with ❤️ by [Aenish Shrestha](https://twitter.com/aenish_shrestha) , Credits : [Dory](https://twitter.com/dory111111)")
-        st.markdown("[Github Repo](https://github.com/AenishShrestha/babyagi)")
-        objective = st.text_input("Input Ultimate goal", "Solve world hunger")
-        first_task = st.text_input("Input Where to start", "Develop a task list")
+    st.title("BabyAGI Streamlit")
+    st.markdown("Customized with ❤️ by [Aenish Shrestha](https://twitter.com/aenish_shrestha) , Credits : [Dory](https://twitter.com/dory111111)")
+    st.markdown("[Github Repo](https://github.com/AenishShrestha/babyagi)")
+    objective = st.text_input("Input Ultimate goal", "Solve world hunger")
+    first_task = st.text_input("Input Where to start", "Develop a task list")
+    with streamlit_analytics.track():
+        st.set_page_config(page_title="BabyAgi", page_icon="🤖",initial_sidebar_state="expanded", layout="centered")
         max_iterations = st.number_input("Max iterations", value=3, min_value=1, step=1)
         button = st.button("Run")
 
